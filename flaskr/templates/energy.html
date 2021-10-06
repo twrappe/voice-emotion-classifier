@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>multiple-choice quiz form</title>
+</head>
+<body bgcolor=#ffffff>
+<p id="demo"></p>
+<h3>Energy-Efficiency Questionnaire</h3>
+<form method="post" action="{{ url_for("chart", eid=eid, username=username)}}">
+<ul>
+</ul>
+<P>1. I felt that my sleep quality last night was<BR>
+<input type="radio" name="sleep" value="-2">dismal<BR>
+<input type="radio" name="sleep" value="-1">poor<BR>
+<input type="radio" name="sleep" value="0">normal<BR>
+<input type="radio" name="sleep" value="1">good<BR>
+<input type="radio" name="sleep" value="2">great<BR>
+
+    <P>2. I took _ substances (alcohol, drugs) in the past week<BR>
+    <input type="radio" name="substance" value="-2">a lot of<BR>
+    <input type="radio" name="substance" value="0">some<BR>
+    <input type="radio" name="substance" value="2">no<BR>
+
+    <P>3. I have a _ diet<BR>
+    <input type="radio" name="diet" value="-2">very poor<BR>
+    <input type="radio" name="diet" value="-1">poor<BR>
+    <input type="radio" name="diet" value="0">okay<BR>
+    <input type="radio" name="diet" value="1">good<BR>
+    <input type="radio" name="diet" value="2">very good<BR>
+
+    <P>4. My social support system is _<BR>
+     <input type="radio" name="support" value="-2">very poor<BR>
+    <input type="radio" name="support" value="-1">poor<BR>
+    <input type="radio" name="support" value="0">okay<BR>
+    <input type="radio" name="support" value="1">good<BR>
+    <input type="radio" name="support" value="2">very good<BR>
+
+    <P>5. I exercise _ times a week <BR>
+    <input type="radio" name="exercise" value="-1">0<BR>
+    <input type="radio" name="exercise" value="0">1-2<BR>
+    <input type="radio" name="exercise" value="1">3-4<BR>
+    <input type="radio" name="exercise" value="2">5+<BR>
+
+</p>
+
+<br>
+<br>
+<br>
+<br>
+<input type="submit" value="Send Form">
+<input type="reset" value="Clear Form">
+</form>
+</body>
+</html>
