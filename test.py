@@ -34,25 +34,11 @@ def record_to_file():
     write(file_name, fs, myrecording)
     return file_name
 
-def predict_emotion(filename):
+def predict_emotion():
     # load the saved model (after training)
     model = pickle.load(open("model.pkl", "rb"))
     #print("Please talk")
-    #filename = record_to_file(filename)
-    # record the file (start talking)
-    # extract features and reshape it
-    features = feature_extraction(filename, mfcc=True, mel=True, chroma=True, rms=True, zcr=True).reshape(1, -1)
-    # predict
-    emotion = model.predict(features)[0]
-    # show the result !
-    #print(emotion)
-    return emotion
-
-def predict_emotion(filename):
-    # load the saved model (after training)
-    model = pickle.load(open("model.pkl", "rb"))
-    #print("Please talk")
-    #filename = record_to_file(filename)
+    filename = record_to_file()
     # record the file (start talking)
     # extract features and reshape it
     features = feature_extraction(filename, mfcc=True, mel=True, chroma=True, rms=True, zcr=True).reshape(1, -1)

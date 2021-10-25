@@ -48,8 +48,7 @@ def predict(username):
         elated = 0
         down = 0
         for i in range(1):
-            filename = record_to_file()
-            emotion = predict_emotion(filename)
+            emotion = predict_emotion()
             if emotion == 'normal':
                 normal += 1
             elif emotion == 'manic':
