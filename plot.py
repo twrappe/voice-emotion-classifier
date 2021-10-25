@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 def plot_map(normal, manic, depressed, elated, down, description, date):
@@ -33,5 +35,4 @@ def plot_map(normal, manic, depressed, elated, down, description, date):
     plt.gcf().autofmt_xdate()
     axes = plt.gca()
     axes.set_yticks(["depressed", "down", "neutral", "elated", "manic"])
-    plt.show()
     plt.savefig("results/result.png")

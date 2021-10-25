@@ -1,13 +1,13 @@
 import pymysql.cursors
 from hashlib import sha256
 mydb = pymysql.connect(
-        host="us-cdbr-east-04.cleardb.com",
-        user="b65783d347eaac",
-        passwd="7911defd",
-        database="heroku_80f10aeef8d10b7"
+        host="remotemysql.com",
+        user="OilxtzoNUh",
+        passwd="JEf8Nb44It",
+        database="OilxtzoNUh"
 )
 mycursor = mydb.cursor()
-#
+# #
 # mycursor.execute("CREATE TABLE Users (uid INTEGER UNIQUE AUTO_INCREMENT PRIMARY KEY,"
 #                  "username VARCHAR(255), "
 #                  "firstname VARCHAR(255), "
@@ -18,7 +18,7 @@ mycursor = mydb.cursor()
 #                 "FOREIGN KEY(uid) REFERENCES "
 #                 "Users(uid), normal INTEGER, manic INTEGER, depressed INTEGER,"
 #                 "elated INTEGER, down INTEGER, description VARCHAR(255), time DATETIME)")
-#mycursor.execute("SHOW TABLES")
+# mycursor.execute("SHOW TABLES")
 # for tb in mycursor:
 #     print(tb)
 #mycursor.execute("DROP TABLE Entries")
@@ -31,7 +31,7 @@ mycursor = mydb.cursor()
 #mycursor.execute("ALTER TABLE Entries ADD down INTEGER")
 def add_user(firstname, lastname, username, pwd):
     pwd = password_hash(pwd)
-    sql = "INSERT INTO USERS (firstname, lastname, username, pwd) VALUES (%s, %s, %s, %s)"
+    sql = "INSERT INTO Users (firstname, lastname, username, pwd) VALUES (%s, %s, %s, %s)"
     record = (firstname, lastname, username, pwd)
     mycursor.execute(sql, record)
     mydb.commit()
@@ -47,7 +47,7 @@ def login(username, password):
     return str(myresult[0])
 
 def get_uid(uname):
-    sql = "SELECT uid FROM USERS WHERE `username` = '%s'" % uname
+    sql = "SELECT uid FROM Users WHERE `username` = '%s'" % uname
     mycursor.execute(sql)
     myresult = mycursor.fetchall()
     result = str(myresult[0])
@@ -56,7 +56,7 @@ def get_uid(uname):
     return result
 
 def get_user_info(username):
-    sql = "SELECT * FROM USERS WHERE username = ('%s')"
+    sql = "SELECT * FROM Users WHERE username = ('%s')"
     record = username
     mycursor.execute(sql, record)
     myresult = mycursor.fetchall()
@@ -69,17 +69,17 @@ def password_hash(password):
     return hash
 def add_entry(username, description, emotions, timedate):
     uid = int(get_uid(username))
-    sql = "INSERT INTO ENTRIES (uid, description, time, normal, manic, depressed, elated, down) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+    sql = "INSERT INTO Entries (uid, description, time, normal, manic, depressed, elated, down) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
     record = (uid, description, timedate, emotions[0], emotions[1], emotions[2], emotions[3], emotions[4])
     mycursor.execute(sql, record)
     mydb.commit()
-    sql2 = "SELECT eid FROM ENTRIES ORDER BY eid DESC LIMIT 1;"
+    sql2 = "SELECT eid FROM Entries ORDER BY eid DESC LIMIT 1;"
     mycursor.execute(sql2)
     result = mycursor.fetchone()
     return str(result).strip("(\',)")
 def get_user_entry(username):
     uid = get_uid(username)
-    sql = "SELECT eid, normal, manic, depressed, elated, down, description, time FROM ENTRIES WHERE `uid` = '%d' ORDER BY eid DESC LIMIT 10" % int(uid)
+    sql = "SELECT eid, normal, manic, depressed, elated, down, description, time FROM Entries WHERE `uid` = '%d' ORDER BY eid DESC LIMIT 10" % int(uid)
     mycursor.execute(sql)
     result = mycursor.fetchall()
     results = []
