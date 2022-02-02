@@ -1,7 +1,7 @@
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-
+from PIL import Image
 def plot_map(normal, manic, depressed, elated, down, description, date):
     # create data
     normal = normal[::-1]
@@ -35,4 +35,7 @@ def plot_map(normal, manic, depressed, elated, down, description, date):
     plt.gcf().autofmt_xdate()
     axes = plt.gca()
     axes.set_yticks(["depressed", "down", "neutral", "elated", "manic"])
-    plt.savefig("results/result.png")
+    z = x[-1].replace(" ", "-")
+    z = z.replace(":", "-")
+    figure = r"results/"+ z + ".png"
+    plt.savefig(figure)

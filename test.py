@@ -27,7 +27,7 @@ def feature_extraction(file_name, mfcc, mel, chroma, zcr, rms):
 
 def record_to_file():
     fs = 44100  # Sample rate
-    seconds = 5 # Duration of recording
+    seconds = 3 # Duration of recording
     myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
     sd.wait()  # Wait until recording is finished
     file_name = "test.wav"

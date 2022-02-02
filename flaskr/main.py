@@ -47,18 +47,17 @@ def predict(username):
         depressed = 0
         elated = 0
         down = 0
-        for i in range(1):
-            emotion = predict_emotion()
-            if emotion == 'normal':
-                normal += 1
-            elif emotion == 'manic':
-                manic += 1
-            elif emotion == 'depressed':
-                depressed += 1
-            elif emotion == 'elated':
-                elated += 1
-            elif emotion == 'down':
-                down += 1
+        emotion = predict_emotion()
+        if emotion == 'normal':
+            normal += 1
+        elif emotion == 'manic':
+            manic += 1
+        elif emotion == 'depressed':
+            depressed += 1
+        elif emotion == 'elated':
+            elated += 1
+        elif emotion == 'down':
+            down += 1
         emotions = []
         emotions.append(normal)
         emotions.append(manic)
@@ -66,7 +65,7 @@ def predict(username):
         emotions.append(elated)
         emotions.append(down)
         timedate = time.strftime('%Y-%m-%d %H:%M:%S')
-        description = flask.request.values.get("description")
+        description = flask.request.form.get("prediction")
         add_entry(username, description, emotions, timedate)
         return redirect('/result/' + username)
     return render_template("form.html", username=username)

@@ -10,8 +10,15 @@
 <body>
 
 <form action="{{ url_for("predict", username=username)}}" method="post">
-    <label for="description">Name of Activity:</label>
-    <input type="text" id="description" name="description"><br>
+<label for="prediction">Prediction for how you are feeling:</label>
+    <select id="prediction">
+        <option label="" selected></option>
+        <option label="Manic">Manic</option>
+        <option label="Elated">Elated</option>
+        <option label="Neutral">Neutral</option>
+        <option label="Down">Down</option>
+        <option label="Depressed">Depressed</option>`
+    </select>
 <button type="submit">Record for 5s</button>
 </form>
 </body>
